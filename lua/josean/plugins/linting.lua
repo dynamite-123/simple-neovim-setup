@@ -3,7 +3,19 @@ return {
 	event = { "BufReadPre", "BufNewFile" },
 	config = function()
 		local lint = require("lint")
-
+-- ********************************
+		-- Configure eslint_d with custom args
+		lint.linters.eslint_d = {
+			cmd = "eslint_d",
+			args = {
+				"--format", "json",
+				"--stdin",
+				"--stdin-filename", function() return vim.api.nvim_buf_get_name(0) end
+			},
+			stdin = true,
+			parser = require("lint.parser").from_json,
+		}
+-- ********************************
 		lint.linters_by_ft = {
 			javascript = { "eslint_d" },
 			typescript = { "eslint_d" },
@@ -11,6 +23,7 @@ return {
 			typescriptreact = { "eslint_d" },
 			svelte = { "eslint_d" },
 			python = { "pylint" },
+			html = { "htmlhint" },
 		}
 
 		local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
