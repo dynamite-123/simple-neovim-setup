@@ -9,21 +9,18 @@ return {
 		-- import nvim-treesitter plugin
 		local treesitter = require("nvim-treesitter.configs")
 
-		-- manually load nvim-ts-autotag
+		-- manually setup nvim-ts-autotag (modern usage)
 		require("nvim-ts-autotag").setup()
 
 		-- configure treesitter
-		treesitter.setup({ -- enable syntax highlighting
+		---@diagnostic disable-next-line: missing-fields
+		treesitter.setup({
 			highlight = {
 				enable = true,
 			},
-			-- enable indentation
-			indent = { enable = true },
-			-- enable autotagging (w/ nvim-ts-autotag plugin)
-			autotag = {
+			indent = {
 				enable = true,
 			},
-			-- ensure these language parsers are installed
 			ensure_installed = {
 				"json",
 				"javascript",
@@ -50,6 +47,8 @@ return {
 				"sql",
 				"c",
 			},
+			auto_install = true, -- automatically install missing parsers
+			sync_install = false, -- non-blocking parser install
 			incremental_selection = {
 				enable = true,
 				keymaps = {
