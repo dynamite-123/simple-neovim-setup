@@ -21,3 +21,11 @@ keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current tab" 
 keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Go to next tab" }) --  go to next tab
 keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" }) --  go to previous tab
 keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" }) --  move current buffer to new tab
+
+-- indent / unindent in visual mode
+keymap.set("v", "<Tab>", ">gv", { noremap = true, silent = true, desc = "Indent selection" })
+keymap.set("v", "<S-Tab>", "<gv", { noremap = true, silent = true, desc = "Unindent selection" })
+
+-- indent / unindent in normal mode
+keymap.set("n", "<Tab>", ">>", { noremap = true, silent = true, desc = "Indent line" })
+keymap.set("n", "<S-Tab>", "<<", { noremap = true, silent = true, desc = "Unindent line" })
