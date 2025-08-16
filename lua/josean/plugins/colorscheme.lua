@@ -9,7 +9,7 @@ return {
 					terminal_colors = true,
 				},
 			})
-			vim.cmd("colorscheme onedark_dark")
+			vim.cmd("colorscheme onedark")
 		end,
 	},
 }
