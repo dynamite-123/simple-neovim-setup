@@ -12,28 +12,6 @@ opt.expandtab = true -- expand tab to spaces
 opt.autoindent = true -- copy indent from current line when starting new one
 -- opt.smarttab = true -- make tabing smarter (use shiftwidth at start of line)
 
--- Override for specific filetypes (2 spaces for html, javascriptreact, typescriptreact)
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = {
-		"html",
-		"css",
-		"scss",
-		"javascript",
-		"javascriptreact",
-		"typescript",
-		"typescriptreact",
-		"json",
-		"yaml",
-		"vue",
-		"svelte",
-		"markdown",
-	},
-	callback = function()
-		opt.tabstop = 2
-		opt.shiftwidth = 2
-	end,
-})
-
 opt.wrap = true
 
 -- search settings
@@ -42,7 +20,6 @@ opt.smartcase = true -- if you include mixed case in your search, assumes you wa
 
 opt.cursorline = true
 
--- turn on termiguicolors for tokyonight colorscheme to work
 -- (have to use iterm2 or any other true color terminal)
 opt.termguicolors = true
 opt.background = "dark" -- colorschemes that can be light or dark will be made dark

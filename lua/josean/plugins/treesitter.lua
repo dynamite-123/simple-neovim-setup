@@ -2,15 +2,9 @@ return {
 	"nvim-treesitter/nvim-treesitter",
 	event = { "BufReadPre", "BufNewFile" },
 	build = ":TSUpdate",
-	dependencies = {
-		"windwp/nvim-ts-autotag",
-	},
 	config = function()
 		-- import nvim-treesitter plugin
 		local treesitter = require("nvim-treesitter.configs")
-
-		-- manually setup nvim-ts-autotag (modern usage)
-		require("nvim-ts-autotag").setup()
 
 		-- safe wrappers for incremental selection
 		local ts_utils = require("nvim-treesitter.ts_utils")
@@ -47,30 +41,14 @@ return {
 				enable = true,
 			},
 			ensure_installed = {
-				"json",
-				"javascript",
-				"typescript",
-				"tsx",
-				"yaml",
-				"html",
-				"css",
-				"prisma",
-				"markdown",
-				"markdown_inline",
-				"svelte",
-				"graphql",
-				"bash",
+				"c",
+				"cpp", 
+				"python",
 				"lua",
 				"vim",
-				"dockerfile",
-				"gitignore",
-				"query",
 				"vimdoc",
-				"python",
-				"cpp",
-				"java",
-				"sql",
-				"c",
+				"bash",
+				"query",
 			},
 			auto_install = true, -- automatically install missing parsers
 			sync_install = false, -- non-blocking parser install
