@@ -1,2 +1,2 @@
-require("josean.core")
-require("josean.lazy")
+require("dyno.core")
+require("dyno.lazy")
