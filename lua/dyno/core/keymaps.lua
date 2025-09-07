@@ -24,3 +24,8 @@ keymap.set("v", "<S-Tab>", "<gv", { noremap = true, silent = true, desc = "Unind
 -- indent / unindent in normal mode
 keymap.set("n", "<Tab>", ">>", { noremap = true, silent = true, desc = "Indent line" })
 keymap.set("n", "<S-Tab>", "<<", { noremap = true, silent = true, desc = "Unindent line" })
+
+-- Jump list navigation
+keymap.set("n", "<C-Left>", "<C-o>", { desc = "Jump backward in jumplist" })
+keymap.set("n", "<C-Right>", "<C-i>", { desc = "Jump forward in jumplist" })
+
