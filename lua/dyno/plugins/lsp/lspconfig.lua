@@ -84,12 +84,10 @@ return {
     -- Manually configure each LSP server instead of using setup_handlers
     mason_lspconfig.setup()
 
-    -- Default handler for installed servers
-    for _, server_name in ipairs(mason_lspconfig.get_installed_servers()) do
-      lspconfig[server_name].setup({
-        capabilities = capabilities,
-      })
-    end
+    -- Configure pyright (other servers are configured specifically below)
+    lspconfig["pyright"].setup({
+      capabilities = capabilities,
+    })
 
     -- Configure specific servers
     lspconfig["clangd"].setup({
