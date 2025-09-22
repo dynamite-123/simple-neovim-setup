@@ -55,13 +55,20 @@ return {
         keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts) -- show diagnostics for line
 
         opts.desc = "Go to previous diagnostic"
-        keymap.set("n", "[d", function() vim.diagnostic.jump({ count = -1 }) end, opts) -- jump to previous diagnostic in buffer
+        keymap.set("n", "[d", function() 
+          vim.diagnostic.jump({ count = -1, severity = vim.diagnostic.severity.ERROR }) 
+        end, opts) -- jump to previous error in buffer
 
         opts.desc = "Go to next diagnostic"
-        keymap.set("n", "]d", function() vim.diagnostic.jump({ count = 1 }) end, opts) -- jump to next diagnostic in buffer
+        keymap.set("n", "]d", function() 
+          vim.diagnostic.jump({ count = 1, severity = vim.diagnostic.severity.ERROR }) 
+        end, opts) -- jump to next error in buffer
 
         opts.desc = "Show documentation for what is under cursor"
         keymap.set("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
+
+        opts.desc = "Show buffer diagnostics"
+        keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts) -- show diagnostics for current buffer only
       end,
     })
 
@@ -69,15 +76,23 @@ return {
     local capabilities = cmp_nvim_lsp.default_capabilities()
 
     -- Change the Diagnostic symbols in the sign column (gutter)
-    -- (not in youtube nvim video)
+    -- Only show errors, hide warnings/hints/info
     vim.diagnostic.config({
+      severity_sort = true,
+      virtual_text = {
+        severity = { min = vim.diagnostic.severity.ERROR },
+      },
+      float = {
+        severity = { min = vim.diagnostic.severity.ERROR },
+      },
       signs = {
+        severity = { min = vim.diagnostic.severity.ERROR },
         text = {
           [vim.diagnostic.severity.ERROR] = " ",
-          [vim.diagnostic.severity.WARN] = " ",
-          [vim.diagnostic.severity.HINT] = "󰠠 ",
-          [vim.diagnostic.severity.INFO] = " ",
         },
+      },
+      underline = {
+        severity = { min = vim.diagnostic.severity.ERROR },
       },
     })
 
