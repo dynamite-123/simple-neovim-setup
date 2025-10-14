@@ -7,12 +7,6 @@ return {
     { "folke/neodev.nvim", opts = {} },
   },
   config = function()
-    -- import lspconfig plugin
-    local lspconfig = require("lspconfig")
-
-    -- import mason_lspconfig plugin
-    local mason_lspconfig = require("mason-lspconfig")
-
     -- import cmp-nvim-lsp plugin
     local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
@@ -96,21 +90,19 @@ return {
       },
     })
 
-    -- Manually configure each LSP server instead of using setup_handlers
-    mason_lspconfig.setup()
-
-    -- Configure pyright (other servers are configured specifically below)
-    lspconfig["pyright"].setup({
+    -- Configure pyright using new API
+    vim.lsp.enable("pyright", {
       capabilities = capabilities,
     })
 
-    -- Configure specific servers
-    lspconfig["clangd"].setup({
+    -- Configure clangd
+    vim.lsp.enable("clangd", {
       capabilities = capabilities,
       cmd = { "clangd", "--background-index", "--clang-tidy", "--header-insertion=iwyu" },
     })
 
-    lspconfig["lua_ls"].setup({
+    -- Configure lua_ls
+    vim.lsp.enable("lua_ls", {
       capabilities = capabilities,
       settings = {
         Lua = {
